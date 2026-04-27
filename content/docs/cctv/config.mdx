@@ -1,0 +1,42 @@
+---
+title: Config
+description: All configurable options for unity_cctv.
+---
+
+```lua
+Config = {}
+
+Config.Framework = "auto"        -- auto, qb, qbx, esx
+
+Config.NetworkTabletProp = false -- sync tablet to others
+Config.EnableAlertBlips = true   -- shows a blip on the map when motion is detected
+
+Config.blacklistedAreas = {
+    enabled = true,
+    areas = {
+        { -- Alta apartments
+            coords = vec3(-258.5134, -982.7307, 31.2197),
+            radius = 250.0
+        },
+        { -- Downtown park
+            coords = vec3(171.4828, -974.9066, 29.9623),
+            radius = 350.0
+        },
+    }
+}
+
+Config.CameraItems = {
+    ['camera_1'] = {
+        label = "Wall cctv",
+        nightVision = true,
+        rotateAngle = vec2(10, 90),
+        prop = 'prop_cctv_cam_04c',
+    },
+    ["camera_2"] = {
+        label = "Roof cctv",
+        nightVision = false,
+        rotateAngle = vec2(10, 90),
+        prop = 'hei_prop_bank_cctv_01',
+    }
+}
+```

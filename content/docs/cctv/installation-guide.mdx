@@ -1,0 +1,65 @@
+---
+title: Installation Guide
+description: How to install and start unity_cctv on your server.
+---
+
+#### Dependencies:
+
+- [ox_lib](https://github.com/CommunityOx/ox_lib)
+- [ox_inventory](https://github.com/CommunityOx/ox_inventory)
+- [oxmysql](https://github.com/overextended/oxmysql)
+
+⚠ Make sure that `ox_lib`, `ox_inventory` and `oxmysql` are started **before** this resource!
+
+A framework is also required. The script auto-detects:
+
+- ESX (`es_extended`)
+- QBCore (`qb-core`)
+- Qbox (`qbx_core`)
+
+***
+
+#### Step 1:
+
+Put the folder into your resources folder.
+
+#### Step 2:
+
+Run the `db.sql` file shipped with the resource against your server database. It creates the `unity_cctv_cameras` and `unity_cctv_cameras_acces` tables.
+
+#### Step 3:
+
+Add the items to your inventory.
+
+You can find the item templates and icons in the `_installation` folder.
+
+**ox_inventory:**
+
+Open `_installation/ox_items.txt` and add the entries to your `ox_inventory/data/items.lua`. Copy the icons from `_installation/icons/` to `ox_inventory/web/images/`.
+
+The default items are:
+
+- `cctv_tablet` — opens the tablet UI (`unity_cctv.open`)
+- `camera_1` — wall-mounted CCTV (`unity_cctv.place`)
+- `camera_2` — roof-mounted CCTV (`unity_cctv.place`)
+
+If you add more camera types in the config, register them as items the same way and point them to the `unity_cctv.place` export.
+
+#### Step 4:
+
+Ensure the script in your `server.cfg` file.
+
+```
+ensure ox_lib
+ensure ox_inventory
+ensure oxmysql
+ensure unity_cctv
+```
+
+#### Done
+
+Enjoy the script.
+
+***
+
+- <https://unityscripts.net/>
