@@ -3,33 +3,14 @@ title: CCTV
 description: A complete CCTV system with placeable cameras, motion detection, access sharing and a tablet UI.
 ---
 
-`unity_cctv` is a fully featured CCTV system that lets players place cameras around the map, watch them through a tablet UI, share access with players, jobs or gangs, and detect movement in front of any camera.
-
-<Cards>
-  <Card title="Installation Guide" href="/cctv/installation-guide" />
-  <Card title="Configuration" href="/cctv/config" />
-</Cards>
-
-## Features
-
-- Place wall-mounted or ceiling-mounted CCTV cameras as items
-- Live multi-camera tablet UI with thumbnails
-- Pan / control with optional night vision per camera type
-- Motion detection with optional map blip alerts to authorized viewers
-- Granular access system (Owner / Viewer roles) for **players**, **jobs** and **gangs**
-- Direct access requests sent to nearby players (accept / decline prompt)
-- Cameras can be destroyed by gunfire and auto-cleaned after a configurable delay
-- Blacklisted areas where placement is disabled
-- Auto-detected framework support: **ESX**, **QBCore**, **Qbox**
-- Standalone bridge files — easy to swap or extend
-- Full localization (English & Finnish included, easy to add more)
+import { PepiconsPopInternet } from "@/components/icons";
 
 ## Preview
 
 <iframe
   width="100%"
   height="500"
-  src="https://www.youtube.com/embed/D3fn7_zQFWg?si=_lEyU57ngYNz7A_R"
+  src="https://www.youtube.com/embed/zRTWVSxNC2M?si=RxwRZ-gIsKATPZR7"
   title="YouTube video player"
   frameborder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -37,34 +18,4 @@ description: A complete CCTV system with placeable cameras, motion detection, ac
   allowfullscreen
 ></iframe>
 
-## Items
-
-The script ships with three default items.
-
-| Item          | Label       | Purpose                                  |
-| ------------- | ----------- | ---------------------------------------- |
-| `cctv_tablet` | CCTV Tablet | Opens the tablet UI to view your cameras |
-| `camera_1`    | CCTV PRO    | Wall-mounted camera with night vision    |
-| `camera_2`    | CCTV        | Roof-mounted camera (no night vision)    |
-
-You can add as many camera variants as you want — see [Configuration](/cctv/config#camera-items).
-
-## Database
-
-Two tables are created by `_installation/install.sql`:
-
-- `unity_cctv_cameras` — stores every placed camera, its prop, rotation, broken state and last screenshot.
-- `unity_cctv_cameras_acces` — stores access entries (`person`, `job` or `gang` targets with a `role`).
-
-## Exports
-
-The tablet and cameras are exposed as ox_inventory exports so they work as usable items out of the box:
-
-```lua
-exports.unity_cctv:open()   -- opens the tablet UI
-exports.unity_cctv:place("camera_1")  -- starts the placement flow for the camera item
-```
-
-## Support
-
-Need help or want to report a bug? Join the Unity Scripts Discord linked from [unityscripts.net](https://unityscripts.net).
+## <a href="https://unityscripts.net/shop/packages/7382583">You can buy this script here</a>
