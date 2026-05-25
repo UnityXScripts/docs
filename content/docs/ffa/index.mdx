@@ -1,5 +1,20 @@
 ---
 title: FFA
+description: A free-for-all arena system with configurable maps, weapons, 1v1 arenas and player state support.
 ---
 
-Coming soon
+## Overview
+
+FFA lets players join configured combat arenas, pick from allowed weapons and fight inside map zones with random or fixed spawn points.
+
+## Exports / States
+
+```lua
+-- Open FFA menu
+exports["p-ffa"]:open()
+
+---@type boolean
+local inFFA = LocalPlayer.state.inFFA
+```
+
+Use `LocalPlayer.state.inFFA` in other resources to skip normal death handling while the player is inside FFA.

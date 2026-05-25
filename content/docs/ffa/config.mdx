@@ -1,0 +1,103 @@
+---
+title: Config
+description: All configurable options for p-ffa.
+---
+
+```lua
+Config = {
+    Debug = false,
+
+    Ped = {
+        coords = vec4(-251.3746, -970.3344, 31.2200, 249.7073),
+        model = `s_m_m_marine_01`
+    },
+
+    -- game menu
+    MenuKeyBind = "E",
+
+    MapSphere = {
+        r = 25,
+        g = 87,
+        b = 202,
+        a = 0.2
+    },
+
+    -- /ffa command
+    EnableCommand = true,
+
+    Weapons = {
+        "weapon_pistol",
+        "weapon_combatpistol",
+        "weapon_smg",
+        "weapon_microsmg",
+    },
+
+    Maps = {
+        -- fully random spawns without spawnPoints
+        {
+            name = "Ankkalampi",
+            image = "ankkalampi.png",
+            coords = vec3(1104.2418, -442.5562, 69.8028),
+            radius = 120.0,
+        },
+        -- random spawns with spawnPoints
+        {
+            name = "Huvipuisto",
+            image = "huvipuisto.png",
+            coords = vec3(-1623.3740, -1072.9862, 13.0273),
+            spawnPoints = {
+                vec3(-1640.8075, -1090.6644, 13.0425),
+                vec3(-1661.7863, -1081.9121, 13.1541),
+                vec3(-1669.5569, -1109.7184, 13.1495),
+                vec3(-1649.4363, -1131.8909, 13.0213),
+                vec3(-1615.4094, -1091.5573, 13.0185),
+                vec3(-1621.0560, -990.2275, 13.0168),
+            },
+            radius = 120.0,
+        },
+        -- 1v1
+        {
+            name = "Skeittiparkki",
+            image = "skeittiparkki.png",
+            coords = vec3(-940.9528, -791.4843, 15.9510),
+            spawnPoints = {
+                vec4(-949.5861, -802.5492, 15.9212, 316.7912),
+                vec4(-933.2258, -780.7507, 15.9212, 140.6062),
+            },
+            radius = 40.0,
+            onevone = true,
+        },
+    },
+
+    Arenas = {
+        {
+            name = "Huvipuisto pistooli",
+            mapId = 2,
+            maxPlayers = 20,
+            bulletproofVests = false,
+            weapons = { "weapon_pistol", "weapon_combatpistol" },
+        },
+        {
+            name = "Huvipuisto smg",
+            mapId = 2,
+            maxPlayers = 20,
+            bulletproofVests = true,
+            weapons = { "weapon_smg", "weapon_microsmg" },
+        },
+        {
+            name = "Ankkalampi pistooli",
+            mapId = 1,
+            maxPlayers = 20,
+            bulletproofVests = false,
+            weapons = { "weapon_pistol", "weapon_combatpistol" },
+        },
+        {
+            name = "Ankkalampi smg",
+            mapId = 1,
+            maxPlayers = 20,
+            bulletproofVests = true,
+            weapons = { "weapon_smg", "weapon_microsmg" },
+        },
+    },
+}
+```

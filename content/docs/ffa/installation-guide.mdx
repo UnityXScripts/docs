@@ -1,0 +1,103 @@
+---
+title: Installation Guide
+description: How to install and set up p-ffa on your server.
+---
+
+#### Dependencies:
+
+- [ox_lib](https://github.com/CommunityOx/ox_lib)
+- [ox_inventory](https://github.com/CommunityOx/ox_inventory) or ESX without ox_inventory
+
+Make sure your framework, `ox_lib` and your inventory resource are started before `p-ffa`.
+
+---
+
+#### Step 1:
+
+Put the `p-ffa` folder into your resources folder.
+
+#### Step 2:
+
+Ensure the script in your `server.cfg` file after its dependencies.
+
+```
+ensure ox_lib
+ensure ox_inventory
+ensure p-ffa
+```
+
+If you are using ESX without `ox_inventory`, only ensure the dependencies you use.
+
+#### Step 3:
+
+Update your death handling resource so it does not trigger normal death logic while the player is in FFA.
+
+**qb-ambulancejob/client/dead.lua**
+
+```lua
+-- Find this:
+AddEventHandler('gameEventTriggered', function(event, data)
+    if event == 'CEventNetworkEntityDamage' then
+        local victim, attacker, victimDied, weapon = data[1], data[2], data[4], data[7]
+        if not IsEntityAPed(victim) then return end
+
+-- Replace it with this:
+AddEventHandler('gameEventTriggered', function(event, data)
+    if event == 'CEventNetworkEntityDamage' then
+        local victim, attacker, victimDied, weapon = data[1], data[2], data[4], data[7]
+        if not IsEntityAPed(victim) or LocalPlayer.state.inFFA then return end
+```
+
+**qbx_medical/client/dead.lua**
+
+```lua
+-- Find this:
+AddEventHandler('gameEventTriggered', function(event, data)
+    if event ~= 'CEventNetworkEntityDamage' then return end
+    local victim, attacker, victimDied, weapon = data[1], data[2], data[4], data[7]
+    if not IsEntityAPed(victim) or not victimDied or NetworkGetPlayerIndexFromPed(victim) ~= cache.playerId or not IsEntityDead(cache.ped) then return end
+
+-- Replace it with this:
+AddEventHandler('gameEventTriggered', function(event, data)
+    if event ~= 'CEventNetworkEntityDamage' then return end
+    local victim, attacker, victimDied, weapon = data[1], data[2], data[4], data[7]
+    if LocalPlayer.state.inFFA or not IsEntityAPed(victim) or not victimDied or NetworkGetPlayerIndexFromPed(victim) ~= cache.playerId or not IsEntityDead(cache.ped) then return end
+```
+
+**es_extended/client/modules/death.lua**
+
+```lua
+-- Find this:
+AddEventHandler("esx:onPlayerSpawn", function()
+    Citizen.CreateThreadNow(function()
+        while not ESX.PlayerLoaded do Wait(0) end
+
+        while ESX.PlayerLoaded and not ESX.PlayerData.dead do
+            if DoesEntityExist(ESX.PlayerData.ped) and (IsPedDeadOrDying(ESX.PlayerData.ped, true) or IsPedFatallyInjured(ESX.PlayerData.ped)) then
+                Death:Died()
+                break
+            end
+            Citizen.Wait(250)
+        end
+    end)
+end)
+
+-- Replace it with this:
+AddEventHandler("esx:onPlayerSpawn", function()
+    Citizen.CreateThreadNow(function()
+        while not ESX.PlayerLoaded do Wait(0) end
+
+        while ESX.PlayerLoaded and not ESX.PlayerData.dead do
+            if not LocalPlayer.state.inFFA and DoesEntityExist(ESX.PlayerData.ped) and (IsPedDeadOrDying(ESX.PlayerData.ped, true) or IsPedFatallyInjured(ESX.PlayerData.ped)) then
+                Death:Died()
+                break
+            end
+            Citizen.Wait(250)
+        end
+    end)
+end)
+```
+
+#### Done
+
+Enjoy the script.
