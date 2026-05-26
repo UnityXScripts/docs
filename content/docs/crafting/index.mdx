@@ -1,5 +1,30 @@
 ---
 title: Crafting
+description: A standalone crafting bench system with placeable benches, shared queues, item recipes and XP rewards.
 ---
 
-Coming soon
+## Overview
+
+Crafting gives your server configurable crafting benches where players can craft items from ingredients. Benches can be spawned at fixed locations or placed in-game by using configured crafting table items.
+
+The system includes a 3D bench UI, shared active/completed craft queues, configurable recipes, optional group access and optional XP rewards.
+
+## Features
+
+- Fixed crafting bench locations from `Config.Benches[].points`
+- Placeable crafting benches through usable items like `craftingtable`
+- Persistent placed benches saved in the `unity_crafting_benches` database table
+- Per-bench recipe lists, ingredients, craft duration, output count and XP rewards
+- Shared bench queue so nearby players can see active and completed crafts
+- Optional `ox_target` support with `Config.UseTarget`
+- Editable inventory/framework bridge in `server/server_editable.lua`
+
+## Supported Frameworks
+
+The script registers usable crafting table items automatically when one of these resources is running:
+
+- ESX (`es_extended`)
+- QBCore (`qb-core`)
+- Qbox (`qbx_core`)
+
+Inventory actions use `ox_inventory` by default.

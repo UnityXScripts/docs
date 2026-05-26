@@ -1,0 +1,69 @@
+---
+title: Installation Guide
+description: How to install and start unity_crafting on your server.
+---
+
+#### Dependencies:
+
+- [ox_lib](https://github.com/CommunityOx/ox_lib)
+- [ox_inventory](https://github.com/CommunityOx/ox_inventory)
+- [oxmysql](https://github.com/overextended/oxmysql)
+
+Make sure `ox_lib`, `ox_inventory` and `oxmysql` are started before `unity_crafting`.
+
+Optional dependency:
+
+- `ox_target`, only if `Config.UseTarget = true`
+
+A framework is required for usable crafting table items. The script supports:
+
+- ESX (`es_extended`)
+- QBCore (`qb-core`)
+- Qbox (`qbx_core`)
+
+---
+
+#### Step 1:
+
+Put the `unity_crafting` folder into your resources folder.
+
+#### Step 2:
+
+Add the crafting table items to `ox_inventory`.
+
+Open `_installation/items.lua` and copy the item entries into `ox_inventory/data/items.lua`.
+
+The default items are:
+
+- `craftingtable` - basic crafting table
+- `craftingtable2` - advanced crafting table
+- `craftingtable3` - pro crafting table
+
+These items are used to place benches in-game. Each item is connected to a bench through `Config.Benches[].item`.
+
+#### Step 3:
+
+Configure your benches and recipes in `config.lua`.
+
+Set fixed bench locations in `points`, add craftable items in `items`, and change the bench prop if needed.
+
+#### Step 4:
+
+Ensure the script in your `server.cfg` file after its dependencies.
+
+```
+ensure ox_lib
+ensure ox_inventory
+ensure oxmysql
+ensure unity_crafting
+```
+
+If you use `ox_target`, ensure it before `unity_crafting` too.
+
+#### Database
+
+No manual SQL import is required. The script creates the `unity_crafting_benches` table automatically when `oxmysql` is running.
+
+#### Done
+
+Enjoy the script.

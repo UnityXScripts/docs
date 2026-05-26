@@ -1,0 +1,96 @@
+---
+title: Config
+description: All configurable options for unity_crafting.
+---
+
+```lua
+Config = {}
+
+-- Item image path used by the crafting UI.
+Config.ImagePath = 'nui://ox_inventory/web/images'
+
+-- false = press E near a bench, true = use ox_target on bench props.
+Config.UseTarget = false
+
+-- Possible default bench props:
+-- gr_prop_gr_bench_02a
+-- gr_prop_gr_bench_04b
+-- gr_prop_gr_bench_04a
+
+Config.Benches = {
+    {
+        label = 'Weapon bench',
+        item = 'craftingtable',
+        items = {
+            {
+                slot = 1,
+                name = 'WEAPON_VINTAGEPISTOL',
+                ingredients = {
+                    iron = 280,
+                    steel = 350,
+                    rubber = 100,
+                },
+                duration = 20000,
+                count = 1,
+                xp = 50,
+            },
+        },
+        points = {
+            vec4(-270.3492, -983.0703, 31.2128, 159.9676),
+        },
+        prop = 'gr_prop_gr_bench_04a',
+    },
+    {
+        label = 'Weapon bench',
+        item = 'craftingtable2',
+        items = {
+            {
+                slot = 1,
+                name = 'WEAPON_VINTAGEPISTOL',
+                ingredients = { iron = 280, steel = 350, rubber = 100 },
+                duration = 20000,
+                count = 1,
+                xp = 50,
+            },
+            {
+                slot = 2,
+                name = 'WEAPON_PISTOL50',
+                ingredients = { iron = 300, steel = 400, rubber = 120 },
+                duration = 30000,
+                count = 1,
+                xp = 60,
+            },
+            {
+                slot = 3,
+                name = 'WEAPON_DOUBLEACTION',
+                ingredients = { iron = 320, steel = 420, rubber = 140 },
+                duration = 30000,
+                count = 1,
+                xp = 60,
+            },
+        },
+        points = {
+            vec4(-259.9367, -980.1423, 31.2197, 250.9794),
+        },
+        prop = 'gr_prop_gr_bench_04b',
+    },
+    {
+        label = 'Weapon bench',
+        item = 'craftingtable3',
+        items = {
+            {
+                slot = 1,
+                name = 'WEAPON_COMBATMG',
+                ingredients = { iron = 6000, rubber = 1000, steel = 5800 },
+                duration = 75000,
+                count = 1,
+                xp = 150,
+            },
+        },
+        points = {
+            vec4(-258.7452, -976.8584, 31.2200, 66.1958),
+        },
+        prop = 'gr_prop_gr_bench_02a',
+    },
+}
+```
