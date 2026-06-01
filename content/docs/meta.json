@@ -2,8 +2,8 @@
   "pages": [
     "index",
     "cctv",
-    "crafting",
     "ffa",
+    "crafting",
     "banking",
     "prison",
     "vehicleshop"
